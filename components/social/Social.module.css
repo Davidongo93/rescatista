@@ -1,0 +1,26 @@
+
+.socialContainer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    
+  }
+  
+  .customIconLink {
+    color: orange;
+    text-shadow: 1px 1px 3px black;
+    transition: text-shadow 0.3s ease, color 0.3s ease;
+}
+  
+  .customIconLink:hover {
+    color: white;
+    text-shadow: 2px 2px 5px black;
+  }
+  
+  .customIcon {
+    font-size: 24px;
+  }
+  
