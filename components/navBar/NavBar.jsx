@@ -41,13 +41,13 @@ const Navbar = () => {
          {/* <Link href="/">
             <FontAwesomeIcon icon={faHome} className="w-8 h-8 text-2xl transition duration-300 transform hover:scale-110 text-indigo-200 hover:text-indigo-400" />
         </Link> */}
-          <Link href="/experiencia" title="Experiencia">
+          <Link href="/experience" title="Experiencia">
             <FontAwesomeIcon icon={faBriefcase} className="w-8 h-8 text-2xl transition duration-300 transform hover:scale-110 text-indigo-200 hover:text-indigo-400" />
           </Link>
           <Link href="/" title="Galería">
             <FontAwesomeIcon icon={faImage} className="w-8 h-8 text-2xl transition duration-300 transform hover:scale-110 text-indigo-200 hover:text-indigo-400" />
           </Link>
-          <Link href="/contacto" title="Contacto">
+          <Link href="/" title="Contacto">
             <FontAwesomeIcon icon={faEnvelope} className="w-8 h-8 text-2xl transition duration-300 transform hover:scale-110 text-indigo-200 hover:text-indigo-400" />
           </Link>
         </div>
