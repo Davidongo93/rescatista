@@ -20,7 +20,7 @@ const Page: NextPage = () => {
           className="absolute inset-0 h-full w-full object-cover"
         >
           <source
-            src="https://res.cloudinary.com/de43jseoy/video/upload/v1704412192/kgb/c3nfuqyxau6tvnezmxx5.mp4"
+            src="https://res.cloudinary.com/de43jseoy/video/upload/v1707266459/xtrj45mhlwpb7m0dosgt.mp4"
             type="video/mp4"
           />
           Tu navegador no soporta el elemento de video.
