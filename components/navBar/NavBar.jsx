@@ -29,7 +29,7 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 w-full p-2 bg-orange-700 transition-opacity duration-300 ${
+      className={`fixed top-0 left-0 w-full p-2 bg-indigo-500 transition-opacity duration-300 ${
         scrolling
           ? "backdrop-blur-md bg-opacity-10"
           : "backdrop-blur-md bg-opacity-30"
@@ -38,17 +38,14 @@ const Navbar = () => {
     >
       <div className="flex justify-center items-center">
         <div className="flex items-center space-x-8">
-         {/* <Link href="/">
-            <FontAwesomeIcon icon={faHome} className="w-8 h-8 text-2xl transition duration-300 transform hover:scale-110 text-indigo-200 hover:text-indigo-400" />
-        </Link> */}
           <Link href="/experience" title="Experiencia">
-            <FontAwesomeIcon icon={faBriefcase} className="w-8 h-8 text-2xl transition duration-300 transform hover:scale-110 text-indigo-200 hover:text-indigo-400" />
+            <FontAwesomeIcon icon={faBriefcase} className="w-8 h-8 text-indigo-500 text-2xl transition duration-300 transform hover:scale-110" />
           </Link>
-          <Link href="/" title="Galería">
-            <FontAwesomeIcon icon={faImage} className="w-8 h-8 text-2xl transition duration-300 transform hover:scale-110 text-indigo-200 hover:text-indigo-400" />
-          </Link>
-          <Link href="/" title="Contacto">
-            <FontAwesomeIcon icon={faEnvelope} className="w-8 h-8 text-2xl transition duration-300 transform hover:scale-110 text-indigo-200 hover:text-indigo-400" />
+         <Link href="/">
+            <FontAwesomeIcon icon={faHome} className="w-8 h-8 text-indigo-500 text-2xl transition duration-300 transform hover:scale-110" />
+        </Link>
+          <Link href="/gallery" title="Galería">
+            <FontAwesomeIcon icon={faImage} className="w-8 h-8 text-indigo-500 text-2xl transition duration-300 transform hover:scale-110" />
           </Link>
         </div>
       </div>
