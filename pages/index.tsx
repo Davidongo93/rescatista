@@ -1,7 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faEnvelope,
-  faMapMarked,
   faPhone,
 } from "@fortawesome/free-solid-svg-icons";
 import { NextPage } from "next";

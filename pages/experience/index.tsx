@@ -17,7 +17,7 @@ export default function Home() {
           <source src="https://res.cloudinary.com/de43jseoy/video/upload/v1704412192/xbtekdxt32y4xknarqiv.mp4" type="video/mp4" />
           Tu navegador no soporta el elemento de video.
         </video>
-      <main className="relative min-w-screen mt-12">
+      <main className="relative min-w-screen mt-12 mb-12">
 
         <div className="relative z-0 flex flex-col justify-center items-center h-auto">
             {/* Mapear el arreglo de experiencias para renderizar las tarjetas */}
