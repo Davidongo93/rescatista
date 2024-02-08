@@ -29,12 +29,12 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 w-full p-2 bg-indigo-500 transition-opacity duration-300 ${
+      className={`fixed top-0 px-1  w-full p-2 bg-indigo-500 transition-opacity duration-300 ${
         scrolling
           ? "backdrop-blur-md bg-opacity-10"
           : "backdrop-blur-md bg-opacity-30"
       }`}
-      style={{ zIndex: 1000 }}
+      style={{ zIndex: 10 }}
     >
       <div className="flex justify-center items-center">
         <div className="flex items-center space-x-8">

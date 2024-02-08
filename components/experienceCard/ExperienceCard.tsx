@@ -1,37 +1,26 @@
-import React from 'react';
+// ExperienceCard.js
+import React from "react";
+import Image from "next/image";
 
-interface ExperienceCardProps {
-  imageSrc: string;
-  alt: string;
-  title: string;
-  description: string;
-  startDate: string;
-  endDate: string;
-}
+const ExperienceCard = ({ imageSrc, alt, title, description, startDate, endDate }) => {
+  const dateRange = `${startDate} - ${endDate || "Presente"}`;
 
-const ExperienceCard: React.FC<ExperienceCardProps> = ({
-  imageSrc,
-  alt,
-  title,
-  description,
-  startDate,
-  endDate,
-}) => {
   return (
-    <div className="relative mb-5">
-      <div className="group after:content block w-full cursor-pointer after:pointer-events-none after:absolute after:inset-0 after:rounded-lg after:shadow-highlight">
-        <div className="overflow-hidden">
-          <img
+    <div className="relative bg-opacity-70 rounded-lg overflow-hidden my-4">
+      <div className="flex bg-black bg-opacity-50 text-white p-4 rounded-lg items-center">
+        <div className="relative h-20 w-20 md:h-32 md:w-32 lg:h-40 lg:w-40 mx-4 overflow-hidden  object-cover">
+          <Image
             src={imageSrc}
             alt={alt}
-            className="transform rounded-lg brightness-90 transition will-change-auto group-hover:brightness-110"
-            style={{ transform: 'translate3d(0, 0, 0)' }}
+            width={600}
+            height={600}
+            className="rounded-full object-cover"
           />
         </div>
-        <div className=" text-xl p-4 bg-white/10 rounded-b-lg">
-          <h2 className="text-lg font-bold mb-2">{title}</h2>
-          <p className="text-gray-900 mb-2">{`${startDate} - ${endDate}`}</p>
-          <p className="text-gray-900">{description}</p>
+        <div className="flex flex-col ml-4">
+          <h2 className="text-lg font-bold mb-1">{title}</h2>
+          <p className="text-sm text-gray-300">{dateRange}</p>
+          <p className="text-xs mt-1 max-w-xs">{description}</p>
         </div>
       </div>
     </div>

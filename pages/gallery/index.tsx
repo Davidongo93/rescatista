@@ -57,7 +57,7 @@ const Home: NextPage = ({ images }: { images: ImageProps[] }) => {
           />
         )}
         <div className="columns-1 gap-4 sm:columns-2 xl:columns-3 2xl:columns-4">
-          <div className="relative mb-2 mt-4 flex h-[629px] flex-col items-center rounded-lg bg-black/20 px-6 pb-16 pt-64 text-center text-indigo-400 shadow-highlight lg:pt-0">
+          {/* <div className="relative mb-2 mt-4 flex h-[629px] flex-col items-center rounded-lg bg-black/20 px-6 pb-16 pt-64 text-center text-indigo-400 shadow-highlight lg:pt-0">
             <div className=" mt-10 rounded-sm bg-black/10">
             <Image
             alt="card"
@@ -81,7 +81,7 @@ const Home: NextPage = ({ images }: { images: ImageProps[] }) => {
             <Social/>
             </div>
             </div>
-          </div>
+          </div> */}
           {images.map(({ id, public_id, format, blurDataUrl }) => (
             <Link
               key={id}

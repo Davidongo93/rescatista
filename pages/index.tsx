@@ -6,6 +6,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { NextPage } from "next";
 import NavBar from "../components/navBar/NavBar";
+import Social from "../components/social/Social";
 
 const Page: NextPage = () => {
   return (
@@ -56,17 +57,13 @@ const Page: NextPage = () => {
               <div className="flex items-center">
                 <FontAwesomeIcon
                   icon={faPhone}
-                  className="mb-3 ml-6 mr-3 text-2xl"
+                  className="mb-9 ml-6 mr-3 text-2xl"
                 ></FontAwesomeIcon>
                 <p> +57 3003485579</p>
               </div>
               </a>
-              <div className="flex items-center">
-                <FontAwesomeIcon
-                  icon={faMapMarked}
-                  className="mb-3 ml-6 mr-3 text-2xl"
-                ></FontAwesomeIcon>
-                <p> Bogotá, Colombia, South America</p>
+              <div className="text-2xl">
+<Social/>
               </div>
             </div>
           </div>

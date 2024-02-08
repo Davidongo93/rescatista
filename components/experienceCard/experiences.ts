@@ -1,6 +1,6 @@
 const experiences = [
     {
-      imageSrc: "/monteluna.jpg",
+      imageSrc: "https://res.cloudinary.com/de43jseoy/image/upload/v1707273668/kgb/69983618_10156552582098589_2311504888506351616_n_hii9yf.jpg",
       alt: "Defensa Civil Colombiana",
       title: "Defensa Civil Colombiana",
       description: `
@@ -10,7 +10,7 @@ const experiences = [
       endDate: "2012",
     },
     {
-      imageSrc: "/landing.jpeg",
+      imageSrc: "https://res.cloudinary.com/de43jseoy/image/upload/v1707277775/kgb/315284902_10159061139693589_2117555199762630088_n_ikvovp.jpg",
       alt: "Bomberos Colombia",
       title: "Bomberos Colombia",
       description: `
@@ -20,7 +20,7 @@ const experiences = [
       endDate: "2014",
     },
     {
-      imageSrc: "/landing.jpeg",
+      imageSrc: "https://res.cloudinary.com/de43jseoy/image/upload/v1707273670/kgb/904326_10151373926768589_453318434_o_q7n5lw.jpg",
       alt: "W.J. Rescate",
       title: "W.J. Rescate",
       description: `
@@ -30,7 +30,7 @@ const experiences = [
       endDate: "2013",
     },
     {
-      imageSrc: "/landing.jpeg",
+      imageSrc: "https://res.cloudinary.com/de43jseoy/image/upload/v1707273666/kgb/18449610_10154611870153589_2539226693417145266_o_opvajs.jpg",
       alt: "Nómada C.I.",
       title: "Nómada C.I.",
       description: `
@@ -40,7 +40,7 @@ const experiences = [
       endDate: "2018",
     },
     {
-      imageSrc: "/landing.jpeg",
+      imageSrc: "https://res.cloudinary.com/de43jseoy/image/upload/v1707277752/kgb/1395422_10151719151557029_175059722_n_qanzti.jpg",
       alt: "Un Techo para mi País",
       title: "Un Techo para mi País",
       description: `
@@ -50,7 +50,7 @@ const experiences = [
       endDate: "Actualidad",
     },
     {
-      imageSrc: "/landing.jpeg",
+      imageSrc: "https://res.cloudinary.com/de43jseoy/image/upload/v1707273671/kgb/1545563_10152076327543589_3762254716928892638_n_j7uosk.jpg",
       alt: "Scouts de Colombia",
       title: "Scouts de Colombia",
       description: `
@@ -60,7 +60,7 @@ const experiences = [
       endDate: "Actualidad",
     },
     {
-      imageSrc: "/landing.jpeg",
+      imageSrc: "https://res.cloudinary.com/de43jseoy/image/upload/v1707273664/kgb/10995990_1565834680358868_8742253844439181994_n_1_nhvnns.jpg",
       alt: "Fundación Puentes de la Esperanza",
       title: "Fundación Puentes de la Esperanza",
       description: `
@@ -70,14 +70,14 @@ const experiences = [
       endDate: "Actualidad",
     },
     {
-      imageSrc: "/landing.jpeg",
+      imageSrc: "https://res.cloudinary.com/de43jseoy/image/upload/v1706808253/kgb/IMG_20210619_094807_kpphxl.jpg",
       alt: "Logros y Expediciones",
       title: "Logros y Expediciones",
       description: `
         Como amante de la aventura, he coordinado y apoyado diferentes expediciones de carácter científico, de socorro y de turismo. Estas experiencias me han llevado a mejorar mis habilidades operativas sobre el terreno, como escalar palma de cera en Colombia, ascender a tepuy en la Guayana o realizar un viaje de 10 días por el río Amazonas en Brasil. Estas son solo algunas de las muchas experiencias que me han llevado a recorrer un gran número de países.
       `,
-      startDate: "Fecha Inicial",
-      endDate: "Fecha Final",
+      startDate: " ",
+      endDate: " ",
     },
   ];
   
