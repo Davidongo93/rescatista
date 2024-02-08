@@ -6,8 +6,7 @@ export default function Home() {
   return (
     <div>
       <NavBar/>
-      <main className="relative min-h-screen mt-16">
-        {/* Capa de fondo */}
+      {/* Capa de fondo */}
         <video
           autoPlay
           muted
@@ -18,8 +17,9 @@ export default function Home() {
           <source src="https://res.cloudinary.com/de43jseoy/video/upload/v1704412192/xbtekdxt32y4xknarqiv.mp4" type="video/mp4" />
           Tu navegador no soporta el elemento de video.
         </video>
+      <main className="relative min-w-screen mt-12">
 
-        <div className="relative z-0 flex flex-col justify-items-center justify-center items-center h-auto text-white text-xl">
+        <div className="relative z-0 flex flex-col justify-center items-center h-auto">
             {/* Mapear el arreglo de experiencias para renderizar las tarjetas */}
             {experiences.map((experience, index) => (
               <ExperienceCard key={index} {...experience} />

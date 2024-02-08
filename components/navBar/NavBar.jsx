@@ -29,23 +29,19 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 px-1  w-full p-2 bg-indigo-500 transition-opacity duration-300 ${
-        scrolling
-          ? "backdrop-blur-md bg-opacity-10"
-          : "backdrop-blur-md bg-opacity-30"
-      }`}
+      className={`fixed top-0 px-1  w-full p-2 bg-transparent  backdrop-blur-md`}
       style={{ zIndex: 10 }}
     >
       <div className="flex justify-center items-center">
         <div className="flex items-center space-x-8">
           <Link href="/experience" title="Experiencia">
-            <FontAwesomeIcon icon={faBriefcase} className="w-8 h-8 text-indigo-500 text-2xl transition duration-300 transform hover:scale-110" />
+            <FontAwesomeIcon icon={faBriefcase} className="w-8 h-8 text-white text-2xl transition duration-300 transform hover:scale-110" />
           </Link>
          <Link href="/">
-            <FontAwesomeIcon icon={faHome} className="w-8 h-8 text-indigo-500 text-2xl transition duration-300 transform hover:scale-110" />
+            <FontAwesomeIcon icon={faHome} className="w-8 h-8 text-white text-2xl transition duration-300 transform hover:scale-110" />
         </Link>
           <Link href="/gallery" title="Galería">
-            <FontAwesomeIcon icon={faImage} className="w-8 h-8 text-indigo-500 text-2xl transition duration-300 transform hover:scale-110" />
+            <FontAwesomeIcon icon={faImage} className="w-8 h-8 text-white text-2xl transition duration-300 transform hover:scale-110" />
           </Link>
         </div>
       </div>
