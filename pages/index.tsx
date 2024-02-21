@@ -27,7 +27,7 @@ const Page: NextPage = () => {
         </video>
 
         {/* Contenedor del contenido superpuesto */}
-        <div className="absolute right-8 top-20 ml-8 rounded-lg bg-indigo-200 bg-opacity-20 p-4 text-indigo-900 backdrop-blur-md">
+        <div className="absolute right-8 top-20 ml-8 rounded-lg bg-indigo-100 bg-opacity-60 p-4 text-indigo-900 backdrop-blur-md">
           <div className="text-center font-bold">
             <div className="mb-2 text-3xl">Kevin Alexander Galeano Barbosa</div>
             <div className="mb-6 text-xl">
