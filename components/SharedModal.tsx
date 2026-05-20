@@ -97,6 +97,8 @@ export default function SharedModal({
                 <>
                   {index > 0 && (
                     <button
+                      aria-label="Foto anterior"
+                      title="Foto anterior (← tecla)"
                       className="absolute left-3 top-[calc(50%-16px)] rounded-full bg-black/50 p-3 text-white/75 backdrop-blur-lg transition hover:bg-black/75 hover:text-white focus:outline-none"
                       style={{ transform: 'translate3d(0, 0, 0)' }}
                       onClick={() => changePhotoId(index - 1)}
@@ -106,6 +108,8 @@ export default function SharedModal({
                   )}
                   {index + 1 < images.length && (
                     <button
+                      aria-label="Siguiente foto"
+                      title="Siguiente foto (→ tecla)"
                       className="absolute right-3 top-[calc(50%-16px)] rounded-full bg-black/50 p-3 text-white/75 backdrop-blur-lg transition hover:bg-black/75 hover:text-white focus:outline-none"
                       style={{ transform: 'translate3d(0, 0, 0)' }}
                       onClick={() => changePhotoId(index + 1)}
@@ -120,18 +124,20 @@ export default function SharedModal({
                   <a
                     href={`https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/${currentImage.public_id}.${currentImage.format}`}
                     className="rounded-full bg-black/50 p-2 text-white/75 backdrop-blur-lg transition hover:bg-black/75 hover:text-white"
+                    aria-label="Abrir foto en tamaño completo"
                     target="_blank"
-                    title="Open fullsize version"
+                    title="Abrir tamaño completo"
                     rel="noreferrer"
                   >
                     <ArrowTopRightOnSquareIcon className="h-5 w-5" />
                   </a>
                 ) : (
                   <a
-                    href={`https://twitter.com/intent/tweet?text=Check%20out%20this%20pic%20from%20Next.js%20Conf!%0A%0Ahttps://nextjsconf-pics.vercel.app/p/${index}`}
+                    href={`https://twitter.com/intent/tweet?text=Mira%20esta%20foto%20de%20Kevin%20Galeano%20Rescatista!%0A%0Ahttps://rescatista.vercel.app/p/${index}`}
                     className="rounded-full bg-black/50 p-2 text-white/75 backdrop-blur-lg transition hover:bg-black/75 hover:text-white"
+                    aria-label="Compartir en Twitter"
                     target="_blank"
-                    title="Open fullsize version"
+                    title="Compartir en Twitter"
                     rel="noreferrer"
                   >
                     <Twitter className="h-5 w-5" />
@@ -141,17 +147,20 @@ export default function SharedModal({
                   onClick={() =>
                     downloadPhoto(
                       `https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/${currentImage.public_id}.${currentImage.format}`,
-                      `${index}.jpg`
+                      `kgb-${index}.jpg`
                     )
                   }
+                  aria-label="Descargar foto"
                   className="rounded-full bg-black/50 p-2 text-white/75 backdrop-blur-lg transition hover:bg-black/75 hover:text-white"
-                  title="Download fullsize version"
+                  title="Descargar foto"
                 >
                   <ArrowDownTrayIcon className="h-5 w-5" />
                 </button>
               </div>
               <div className="absolute top-0 left-0 flex items-center gap-2 p-3 text-white">
                 <button
+                  aria-label={navigation ? 'Cerrar galería' : 'Volver'}
+                  title={navigation ? 'Cerrar (Esc)' : 'Volver'}
                   onClick={() => closeModal()}
                   className="rounded-full bg-black/50 p-2 text-white/75 backdrop-blur-lg transition hover:bg-black/75 hover:text-white"
                 >

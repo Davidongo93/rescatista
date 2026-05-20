@@ -44,15 +44,19 @@ export default function Modal({
   }
 
   useKeypress('ArrowRight', () => {
-    if (index + 1 < images.length) {
-      changePhotoId(index + 1)
+    if (curIndex + 1 < images.length) {
+      changePhotoId(curIndex + 1)
     }
   })
 
   useKeypress('ArrowLeft', () => {
-    if (index > 0) {
-      changePhotoId(index - 1)
+    if (curIndex > 0) {
+      changePhotoId(curIndex - 1)
     }
+  })
+
+  useKeypress('Escape', () => {
+    handleClose()
   })
 
   return (

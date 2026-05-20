@@ -37,6 +37,9 @@ const TimelineItem: React.FC<TimelineItemProps> = ({
                   alt={alt}
                   width={300}
                   height={400}
+                  quality={85}
+                  loading="lazy"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   className="w-full h-auto object-cover rounded-lg"
                   onError={(e) => {
                     e.currentTarget.src = '/placeholder.jpg';
@@ -83,6 +86,9 @@ const TimelineItem: React.FC<TimelineItemProps> = ({
                   alt={alt}
                   width={300}
                   height={400}
+                  quality={85}
+                  loading="lazy"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   className="w-full h-auto object-cover rounded-lg"
                   onError={(e) => {
                     e.currentTarget.src = '/placeholder.jpg';
@@ -134,6 +140,8 @@ const TimelineItem: React.FC<TimelineItemProps> = ({
           {/* Toggle button */}
           <button
             onClick={() => setIsExpanded(!isExpanded)}
+            aria-label={isExpanded ? 'Leer menos sobre ' + title : 'Leer más sobre ' + title}
+            aria-expanded={isExpanded}
             className="mt-3 text-orange-400 hover:text-orange-300 text-sm font-semibold transition-colors"
           >
             {isExpanded ? 'Leer menos' : 'Leer más'}

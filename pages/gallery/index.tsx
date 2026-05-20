@@ -4,7 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useEffect, useRef } from 'react'
-import Modal from '../../components/Modal'
+import dynamic from 'next/dynamic'
 import cloudinary from '../../utils/cloudinary'
 import getBase64ImageUrl from '../../utils/generateBlurPlaceholder'
 import type { ImageProps } from '../../utils/types'
@@ -12,6 +12,13 @@ import { useLastViewedPhoto } from '../../utils/useLastViewedPhoto'
 import NavBar from '../../components/navBar/NavBar'
 import Footer from '../../components/footer/Footer'
 import BackgroundVideo from '../../components/BackgroundVideo'
+
+const Modal = dynamic(() => import('../../components/Modal'), {
+  ssr: false,
+  loading: () => <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80">
+    <div className="text-white">Cargando galería...</div>
+  </div>,
+})
 
 const Home: NextPage = ({ images }: { images: ImageProps[] }) => {
   const router = useRouter()
