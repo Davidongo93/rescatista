@@ -3,67 +3,78 @@ import {
   faEnvelope,
   faPhone,
 } from "@fortawesome/free-solid-svg-icons";
+import Head from "next/head";
 import { NextPage } from "next";
 import NavBar from "../components/navBar/NavBar";
 import Social from "../components/social/Social";
+import BackgroundVideo from "../components/BackgroundVideo";
 
 const Page: NextPage = () => {
   return (
     <>
+      <Head>
+        <title>Kevin Alexander Galeano — Rescatista, Bombero, Instructor</title>
+        <meta
+          name="description"
+          content="Kevin Galeano Barbosa: Rescatista especializado, bombero instructor con 15+ años de experiencia en rescate vertical, montaña e incendios forestales."
+        />
+        <meta property="og:title" content="Kevin Alexander Galeano — Rescatista" />
+        <meta property="og:description" content="Rescatista, bombero especializado e instructor de rescate" />
+        <meta property="og:image" content="/og-image.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" content="/og-image.png" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'Person',
+              name: 'Kevin Alexander Galeano Barbosa',
+              jobTitle: ['Rescatista', 'Bombero', 'Instructor'],
+              url: 'https://rescatista.vercel.app',
+              sameAs: [
+                'https://www.instagram.com/judasgaleano/',
+                'https://www.facebook.com/judas.a.galeano',
+                'https://www.youtube.com/channel/UCicAuv0Aylu-BldY8OAkB3A',
+                'https://www.tiktok.com/@judasgaleano',
+              ],
+            }),
+          }}
+        />
+      </Head>
       <NavBar />
-      <div className="relative min-h-screen overflow-hidden">
-        {/* Video de fondo */}
-        <video
-          autoPlay
-          muted
-          loop
-          className="absolute inset-0 h-full w-full object-cover"
-        >
-          <source
-            src="https://res.cloudinary.com/de43jseoy/video/upload/v1707266459/xtrj45mhlwpb7m0dosgt.mp4"
-            type="video/mp4"
-          />
-          Tu navegador no soporta el elemento de video.
-        </video>
+      <BackgroundVideo src="https://res.cloudinary.com/de43jseoy/video/upload/v1707266459/xtrj45mhlwpb7m0dosgt.mp4" />
 
+      <div className="relative min-h-screen flex items-center justify-end z-10 px-4">
         {/* Contenedor del contenido superpuesto */}
-        <div className="absolute right-8 top-20 ml-8 rounded-lg bg-indigo-200 bg-opacity-60 p-4 text-indigo-900 backdrop-blur-md">
-          <div className="text-center font-bold">
-            <div className="mb-2 text-3xl">Kevin Alexander Galeano Barbosa</div>
-            <div className="mb-6 text-xl">
-              Bombero - Rescatista - Instructor
-            </div>
-            <div className="text-center">
+        <div className="max-w-md rounded-lg bg-black/60 border border-indigo-500/30 p-6 text-white backdrop-blur-md">
+          <div className="text-center">
+            <h1 className="mb-2 text-3xl font-bold">Kevin Alexander Galeano Barbosa</h1>
+            <p className="mb-6 text-lg text-orange-400">
+              Bombero • Rescatista • Instructor
+            </p>
+            <div className="space-y-3">
               <a
                 href="mailto:espeletiafria@gmail.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="customIconLink"
+                className="flex items-center justify-center gap-3 rounded-lg bg-indigo-600 px-4 py-2 text-white transition hover:bg-indigo-700"
               >
-                <div className="flex items-center">
-                  <FontAwesomeIcon
-                    icon={faEnvelope}
-                    className="mb-3 ml-6 mr-3 text-2xl"
-                  ></FontAwesomeIcon>
-                  <p> espeletiafria@gmail.com</p>
-                </div>
+                <FontAwesomeIcon icon={faEnvelope} className="text-xl" />
+                <span>espeletiafria@gmail.com</span>
               </a>
-              <a href="https://wa.me/573003485579"
+              <a
+                href="https://wa.me/573003485579"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="customIconLink"
-                >
-              <div className="flex items-center">
-                <FontAwesomeIcon
-                  icon={faPhone}
-                  className="mb-9 ml-6 mr-3 text-2xl"
-                ></FontAwesomeIcon>
-                <p> +57 3003485579</p>
-              </div>
+                className="flex items-center justify-center gap-3 rounded-lg bg-orange-600 px-4 py-2 text-white transition hover:bg-orange-700"
+              >
+                <FontAwesomeIcon icon={faPhone} className="text-xl" />
+                <span>+57 300 348 5579</span>
               </a>
-              <div className="text-2xl">
-<Social/>
-              </div>
+            </div>
+            <div className="mt-6 flex justify-center gap-4">
+              <Social/>
             </div>
           </div>
         </div>

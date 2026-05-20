@@ -1,27 +1,25 @@
-
 .socialContainer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    display: flex;
-    justify-content: center;
-    
-  }
-  
-  .customIconLink {
-    color: orange;
-    text-shadow: 1px 1px 3px black;
-    transition: text-shadow 0.3s ease, color 0.3s ease;
-    cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
 }
-  
-  .customIconLink:hover {
-    color: white;
-    text-shadow: 2px 2px 5px black;
-  }
-  
-  .customIcon {
-    font-size: 24px;
-  }
-  
+
+.customIconLink {
+  color: #EA580C;
+  font-size: 24px;
+  transition: color 0.3s ease, transform 0.2s ease;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.customIconLink:hover {
+  color: #FFFFFF;
+  transform: scale(1.2);
+}
+
+.customIcon {
+  font-size: 24px;
+}

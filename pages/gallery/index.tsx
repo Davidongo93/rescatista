@@ -11,6 +11,7 @@ import type { ImageProps } from '../../utils/types'
 import { useLastViewedPhoto } from '../../utils/useLastViewedPhoto'
 import NavBar from '../../components/navBar/NavBar'
 import Footer from '../../components/footer/Footer'
+import BackgroundVideo from '../../components/BackgroundVideo'
 
 const Home: NextPage = ({ images }: { images: ImageProps[] }) => {
   const router = useRouter()
@@ -30,23 +31,20 @@ const Home: NextPage = ({ images }: { images: ImageProps[] }) => {
   return (
     <>
       <Head>
-        <title>Kevin Alexander Galeano Bombero - Rescantista - Instructor</title>
+        <title>Galería — Kevin Alexander Galeano Rescatista Bombero</title>
+        <meta
+          name="description"
+          content="Galería de fotos de Kevin Galeano Barbosa documentando sus operaciones de rescate, expediciones y eventos profesionales."
+        />
+        <meta property="og:title" content="Galería — Kevin Alexander Galeano" />
+        <meta property="og:description" content="Fotos de rescates, expediciones y operaciones profesionales" />
+        <meta property="og:image" content="/og-image.png" />
       </Head>
 
-<NavBar/>
-{/* Capa de fondo */}
-        <video
-          autoPlay
-          muted
-          loop
-          className="absolute inset-0 object-cover w-full h-full"
-          style={{ objectFit: "cover", position: "fixed" }}
-        >
-          <source src="https://res.cloudinary.com/de43jseoy/video/upload/v1704412192/xbtekdxt32y4xknarqiv.mp4" type="video/mp4" />
-          Tu navegador no soporta el elemento de video.
-        </video> 
-        
-      <main className="mx-auto max-w-[1960px] p-4 mt-14">
+      <NavBar/>
+      <BackgroundVideo src="https://res.cloudinary.com/de43jseoy/video/upload/v1704412192/xbtekdxt32y4xknarqiv.mp4" />
+
+      <main className="relative z-10 mx-auto max-w-[1960px] p-4 pt-20">
         {photoId && (
           <Modal
             images={images}
@@ -56,31 +54,6 @@ const Home: NextPage = ({ images }: { images: ImageProps[] }) => {
           />
         )}
         <div className="columns-1 gap-4 sm:columns-2 xl:columns-3 2xl:columns-4">
-          {/* <div className="relative mb-2 mt-4 flex h-[629px] flex-col items-center rounded-lg bg-black/20 px-6 pb-16 pt-64 text-center text-indigo-400 shadow-highlight lg:pt-0">
-            <div className=" mt-10 rounded-sm bg-black/10">
-            <Image
-            alt="card"
-            src= "/monteluna.jpg"
-            width={360}
-            height={240}
-            sizes="(max-width: 640px) 100vw,
-              (max-width: 1280px) 50vw,
-              (max-width: 1536px) 33vw,
-              25vw"/>
-              </div>
-            <div className="absolute mt-10  bg-transparent/10 flex-col h-full justify-center">
-            
-            <h1 className="mb-4 text-base font-bold uppercase tracking-widest">
-              Kevin Alexander Galeano
-            </h1>
-            <h1 className=" mb-10 text-base font-bold uppercase tracking-widest">
-              Bombero - Instructor - Rescatista
-            </h1>
-            <div className='text-2xl flex-none'>
-            <Social/>
-            </div>
-            </div>
-          </div> */}
           {images.map(({ id, public_id, format, blurDataUrl }) => (
             <Link
               key={id}

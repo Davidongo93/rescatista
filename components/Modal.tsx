@@ -13,7 +13,7 @@ export default function Modal({
   images: ImageProps[]
   onClose?: () => void
 }) {
-  let overlayRef = useRef()
+  const overlayRef = useRef<HTMLDivElement>(null)
   const router = useRouter()
 
   const { photoId } = router.query
@@ -23,7 +23,7 @@ export default function Modal({
   const [curIndex, setCurIndex] = useState(index)
 
   function handleClose() {
-    router.push('/', undefined, { shallow: true })
+    router.push('/gallery', undefined, { shallow: true })
     onClose()
   }
 
