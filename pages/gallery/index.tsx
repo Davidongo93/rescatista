@@ -13,6 +13,7 @@ import { useLastViewedPhoto } from '../../utils/useLastViewedPhoto'
 import NavBar from '../../components/navBar/NavBar'
 import Footer from '../../components/footer/Footer'
 import BackgroundVideo from '../../components/BackgroundVideo'
+import { allVideos } from '../../components/data/videos'
 
 const Modal = dynamic(() => import('../../components/Modal'), {
   ssr: false,
@@ -29,10 +30,7 @@ const Home: NextPage = ({ images }: { images: ImageProps[] }) => {
 
   const lastViewedPhotoRef = useRef<HTMLAnchorElement>(null)
 
-  const videos = [
-    { id: 'm4rjfOJspfs', title: 'Documental Colombia Vertical' },
-    { id: 'iMnyO3NEhEY', title: 'Tráiler Colombia Vertical' },
-  ]
+  const videos = allVideos
 
   useEffect(() => {
     // This effect keeps track of the last viewed photo in the modal to keep the index page in sync when the user navigates back
@@ -163,11 +161,14 @@ const Home: NextPage = ({ images }: { images: ImageProps[] }) => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="grid md:grid-cols-2 gap-6 md:gap-8 max-w-6xl mx-auto"
+            className="grid sm:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8 max-w-7xl mx-auto"
           >
-            {videos.map((video) => (
-              <div
+            {videos.map((video, i) => (
+              <motion.div
                 key={video.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: i * 0.08 }}
                 className="rounded-2xl overflow-hidden border border-white/10 shadow-glow-soft"
               >
                 <div className="relative aspect-video w-full">
@@ -177,12 +178,13 @@ const Home: NextPage = ({ images }: { images: ImageProps[] }) => {
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
                     title={video.title}
+                    loading="lazy"
                   />
                 </div>
                 <p className="text-white text-center py-4 font-semibold bg-white/[0.03]">
                   {video.title}
                 </p>
-              </div>
+              </motion.div>
             ))}
           </motion.div>
         )}

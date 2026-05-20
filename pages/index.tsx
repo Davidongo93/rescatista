@@ -11,6 +11,7 @@ import BackgroundVideo from "../components/BackgroundVideo";
 import { WhatsAppFloatingButton } from "../components/icons/WhatsAppIcon";
 import { ColombiaVerticalFloatingButton } from "../components/icons/ColombiaVerticalIcon";
 import { Button } from "../components/ui/Button";
+import { featuredVideos } from "../components/data/videos";
 
 const Page: NextPage = () => {
   const videosRef = useRef<HTMLElement>(null);
@@ -204,41 +205,27 @@ const Page: NextPage = () => {
         </motion.div>
 
         <div className="w-full max-w-6xl grid md:grid-cols-2 gap-6 md:gap-8 mb-12">
-          <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true, amount: 0.3 }}
-            className="group"
-          >
-            <div className="relative aspect-video w-full rounded-2xl overflow-hidden shadow-glow-soft border border-white/10">
-              <iframe
-                src="https://www.youtube.com/embed/m4rjfOJspfs"
-                className="absolute inset-0 w-full h-full"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                title="Documental Colombia Vertical"
-              />
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            viewport={{ once: true, amount: 0.3 }}
-            className="group"
-          >
-            <div className="relative aspect-video w-full rounded-2xl overflow-hidden shadow-glow-soft border border-white/10">
-              <iframe
-                src="https://www.youtube.com/embed/iMnyO3NEhEY"
-                className="absolute inset-0 w-full h-full"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                title="Tráiler Colombia Vertical"
-              />
-            </div>
-          </motion.div>
+          {featuredVideos.map((video, i) => (
+            <motion.div
+              key={video.id}
+              initial={{ opacity: 0, x: i === 0 ? -40 : 40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 + i * 0.1 }}
+              viewport={{ once: true, amount: 0.3 }}
+              className="group"
+            >
+              <div className="relative aspect-video w-full rounded-2xl overflow-hidden shadow-glow-soft border border-white/10">
+                <iframe
+                  src={`https://www.youtube.com/embed/${video.id}`}
+                  className="absolute inset-0 w-full h-full"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  title={video.title}
+                  loading="lazy"
+                />
+              </div>
+            </motion.div>
+          ))}
         </div>
 
         <motion.div

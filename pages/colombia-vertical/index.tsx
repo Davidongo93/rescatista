@@ -21,6 +21,7 @@ import BackgroundVideo from '../../components/BackgroundVideo'
 import { Button } from '../../components/ui/Button'
 import { WhatsAppFloatingButton } from '../../components/icons/WhatsAppIcon'
 import { ColombiaVerticalIcon } from '../../components/icons/ColombiaVerticalIcon'
+import { allVideos } from '../../components/data/videos'
 
 // Distinct images per section — none of these duplicate home hero or experience timeline ordering
 const SECTION_IMAGES = {
@@ -497,7 +498,7 @@ const ColombiaVertical: NextPage = () => {
       </section>
 
       {/* VIDEOS */}
-      <section className="relative z-10 mx-auto max-w-6xl px-4 py-24">
+      <section className="relative z-10 mx-auto max-w-7xl px-4 py-24">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -513,48 +514,31 @@ const ColombiaVertical: NextPage = () => {
           </h2>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-6 md:gap-8">
-          <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true, amount: 0.3 }}
-            className="rounded-2xl overflow-hidden border border-white/10 shadow-glow-soft"
-          >
-            <div className="relative aspect-video w-full">
-              <iframe
-                src="https://www.youtube.com/embed/m4rjfOJspfs"
-                className="absolute inset-0 w-full h-full"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                title="Documental Colombia Vertical"
-              />
-            </div>
-            <p className="text-white text-center py-4 font-semibold bg-white/[0.03]">
-              Documental
-            </p>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true, amount: 0.3 }}
-            className="rounded-2xl overflow-hidden border border-white/10 shadow-glow-soft"
-          >
-            <div className="relative aspect-video w-full">
-              <iframe
-                src="https://www.youtube.com/embed/iMnyO3NEhEY"
-                className="absolute inset-0 w-full h-full"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                title="Tráiler Colombia Vertical"
-              />
-            </div>
-            <p className="text-white text-center py-4 font-semibold bg-white/[0.03]">
-              Tráiler
-            </p>
-          </motion.div>
+        <div className="grid sm:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8">
+          {allVideos.map((video, i) => (
+            <motion.div
+              key={video.id}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: (i % 3) * 0.1 }}
+              viewport={{ once: true, amount: 0.2 }}
+              className="rounded-2xl overflow-hidden border border-white/10 shadow-glow-soft"
+            >
+              <div className="relative aspect-video w-full">
+                <iframe
+                  src={`https://www.youtube.com/embed/${video.id}`}
+                  className="absolute inset-0 w-full h-full"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  title={video.title}
+                  loading="lazy"
+                />
+              </div>
+              <p className="text-white text-center py-4 font-semibold bg-white/[0.03]">
+                {video.title}
+              </p>
+            </motion.div>
+          ))}
         </div>
       </section>
 
