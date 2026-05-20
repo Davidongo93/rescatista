@@ -56,79 +56,100 @@ const Page: NextPage = () => {
 
       {/* HERO SECTION */}
       <section className="relative min-h-screen flex items-center justify-center z-10 px-4 overflow-hidden">
-        {/* Subtle vignette */}
+        {/* Radial spotlight + vignette for legibility */}
         <div
           aria-hidden="true"
-          className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60 pointer-events-none"
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              'radial-gradient(ellipse at center, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.4) 40%, rgba(0,0,0,0.7) 100%)',
+          }}
         />
 
         {/* Main content */}
         <motion.div
-          className="relative z-10 text-center max-w-3xl"
+          className="relative z-10 w-full max-w-2xl"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: "easeOut" }}
         >
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3, duration: 0.8 }}
-            className="text-sm sm:text-base text-brand-orange-400 font-semibold uppercase tracking-[0.3em] mb-4"
-          >
-            Bombero · Rescatista · Instructor
-          </motion.p>
+          <div className="relative rounded-3xl px-6 py-10 sm:px-10 sm:py-12 text-center bg-black/35 backdrop-blur-md border border-white/10 shadow-[0_24px_60px_-12px_rgba(0,0,0,0.6),inset_0_1px_0_0_rgba(255,255,255,0.08)]">
+            {/* Decorative accents */}
+            <div
+              aria-hidden="true"
+              className="absolute -top-20 -right-20 w-56 h-56 bg-brand-orange-500/20 rounded-full blur-3xl"
+            />
+            <div
+              aria-hidden="true"
+              className="absolute -bottom-24 -left-20 w-56 h-56 bg-brand-indigo-500/20 rounded-full blur-3xl"
+            />
 
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.9, ease: "easeOut" }}
-            className="text-display-xl font-display text-white mb-6"
-          >
-            Kevin Alexander <br className="hidden xs:block" />
-            <span className="gradient-text">Galeano Barbosa</span>
-          </motion.h1>
+            <div className="relative">
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.3, duration: 0.8 }}
+                className="text-xs sm:text-sm text-brand-orange-400 font-semibold uppercase tracking-[0.3em] mb-4"
+                style={{ textShadow: '0 2px 8px rgba(0,0,0,0.6)' }}
+              >
+                Bombero · Rescatista · Instructor
+              </motion.p>
 
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.8, duration: 0.8 }}
-            className="text-lg sm:text-xl text-white/85 max-w-xl mx-auto mb-10 leading-relaxed"
-          >
-            15+ años de experiencia en rescate vertical, montaña, espacios
-            confinados e incendios forestales.
-          </motion.p>
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5, duration: 0.9, ease: "easeOut" }}
+                className="text-display-xl font-display text-white mb-6"
+                style={{ textShadow: '0 4px 24px rgba(0,0,0,0.7)' }}
+              >
+                Kevin Alexander <br className="hidden xs:block" />
+                <span className="gradient-text">Galeano Barbosa</span>
+              </motion.h1>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.1, duration: 0.8 }}
-            className="flex flex-wrap items-center justify-center gap-4"
-          >
-            <Button
-              as="a"
-              href="mailto:espeletiafria@gmail.com"
-              variant="primary"
-              size="lg"
-            >
-              Contáctame
-            </Button>
-            <Button
-              variant="outline"
-              size="lg"
-              onClick={scrollToVideos}
-            >
-              Ver mi trabajo
-            </Button>
-          </motion.div>
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.8, duration: 0.8 }}
+                className="text-base sm:text-lg text-white/90 max-w-xl mx-auto mb-8 leading-relaxed"
+                style={{ textShadow: '0 2px 12px rgba(0,0,0,0.6)' }}
+              >
+                15+ años de experiencia en rescate vertical, montaña, espacios
+                confinados e incendios forestales.
+              </motion.p>
 
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.4, duration: 0.8 }}
-            className="mt-10 flex justify-center"
-          >
-            <Social />
-          </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.1, duration: 0.8 }}
+                className="flex flex-wrap items-center justify-center gap-4"
+              >
+                <Button
+                  as="a"
+                  href="mailto:espeletiafria@gmail.com"
+                  variant="primary"
+                  size="lg"
+                >
+                  Contáctame
+                </Button>
+                <Button
+                  variant="outline"
+                  size="lg"
+                  onClick={scrollToVideos}
+                >
+                  Ver mi trabajo
+                </Button>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 1.4, duration: 0.8 }}
+                className="mt-8 flex justify-center"
+              >
+                <Social />
+              </motion.div>
+            </div>
+          </div>
         </motion.div>
 
         {/* Floating Colombia Vertical button (bottom-left) */}
