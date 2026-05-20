@@ -24,13 +24,17 @@ export default function ExperiencePage() {
       <NavBar/>
       <BackgroundVideo src="https://res.cloudinary.com/de43jseoy/video/upload/v1704412192/xbtekdxt32y4xknarqiv.mp4" />
 
-      <main className="relative z-10 mx-auto max-w-5xl mt-20 mb-32 px-4">
-        <div className="mb-12 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-3">
-            Mi Experiencia
+      <main className="relative z-10 mx-auto max-w-5xl pt-24 pb-32 px-4">
+        <div className="mb-16 text-center">
+          <p className="text-sm text-brand-orange-400 font-semibold uppercase tracking-[0.3em] mb-3">
+            Recorrido profesional
+          </p>
+          <h1 className="text-display-xl font-display text-white mb-4">
+            Mi <span className="gradient-text-fire">experiencia</span>
           </h1>
-          <p className="text-white/80 text-lg">
-            Más de 15 años especializándome en rescate, bombería e iniciativas humanitarias
+          <p className="text-white/80 text-lg max-w-2xl mx-auto leading-relaxed">
+            Más de 15 años especializándome en rescate, bombería e iniciativas
+            humanitarias.
           </p>
         </div>
 

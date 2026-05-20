@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useEffect, useRef, useState } from 'react'
 import dynamic from 'next/dynamic'
+import { motion } from 'framer-motion'
 import cloudinary from '../../utils/cloudinary'
 import getBase64ImageUrl from '../../utils/generateBlurPlaceholder'
 import type { ImageProps } from '../../utils/types'
@@ -57,7 +58,7 @@ const Home: NextPage = ({ images }: { images: ImageProps[] }) => {
       <NavBar/>
       <BackgroundVideo src="https://res.cloudinary.com/de43jseoy/video/upload/v1704412192/xbtekdxt32y4xknarqiv.mp4" />
 
-      <main className="relative z-10 mx-auto max-w-[1960px] p-4 pt-20">
+      <main className="relative z-10 mx-auto max-w-[1960px] p-4 pt-24">
         {photoId && (
           <Modal
             images={images}
@@ -67,33 +68,66 @@ const Home: NextPage = ({ images }: { images: ImageProps[] }) => {
           />
         )}
 
-        {/* Tab Switcher */}
-        <div className="mb-8 flex gap-4 justify-center">
-          <button
-            onClick={() => setActiveTab('fotos')}
-            className={`px-6 py-2 rounded-lg font-semibold transition ${
-              activeTab === 'fotos'
-                ? 'bg-indigo-600 text-white'
-                : 'bg-black/40 text-white/60 hover:text-white'
-            }`}
-          >
-            Fotos
-          </button>
-          <button
-            onClick={() => setActiveTab('videos')}
-            className={`px-6 py-2 rounded-lg font-semibold transition ${
-              activeTab === 'videos'
-                ? 'bg-indigo-600 text-white'
-                : 'bg-black/40 text-white/60 hover:text-white'
-            }`}
-          >
-            Videos
-          </button>
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
+          className="text-center mb-10"
+        >
+          <p className="text-sm text-brand-orange-400 font-semibold uppercase tracking-[0.3em] mb-3">
+            Archivo visual
+          </p>
+          <h1 className="text-display-lg font-display text-white mb-3">
+            Galería
+          </h1>
+          <p className="text-white/70 max-w-xl mx-auto">
+            Operaciones de rescate, expediciones, formaciones y momentos en
+            campo.
+          </p>
+        </motion.div>
+
+        {/* Tab Switcher — original segmented control */}
+        <div className="mb-10 flex justify-center">
+          <div className="relative inline-flex p-1 rounded-full bg-white/5 backdrop-blur-md border border-white/10">
+            <motion.div
+              className="absolute inset-y-1 rounded-full bg-gradient-to-r from-brand-indigo-600 to-brand-orange-600 shadow-glow-soft"
+              initial={false}
+              animate={{
+                x: activeTab === 'fotos' ? 4 : 'calc(100% - 4px)',
+                width: 'calc(50% - 4px)',
+              }}
+              style={{ left: 0 }}
+              transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+            />
+            <button
+              onClick={() => setActiveTab('fotos')}
+              className={`relative z-10 px-6 sm:px-8 py-2.5 rounded-full font-semibold text-sm transition-colors duration-300 min-w-[100px] ${
+                activeTab === 'fotos' ? 'text-white' : 'text-white/60 hover:text-white/90'
+              }`}
+            >
+              Fotos
+            </button>
+            <button
+              onClick={() => setActiveTab('videos')}
+              className={`relative z-10 px-6 sm:px-8 py-2.5 rounded-full font-semibold text-sm transition-colors duration-300 min-w-[100px] ${
+                activeTab === 'videos' ? 'text-white' : 'text-white/60 hover:text-white/90'
+              }`}
+            >
+              Videos
+            </button>
+          </div>
         </div>
 
         {/* Photos Tab */}
         {activeTab === 'fotos' && (
-          <div className="columns-1 gap-4 sm:columns-2 xl:columns-3 2xl:columns-4">
+          <motion.div
+            key="fotos"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            className="columns-1 gap-4 sm:columns-2 xl:columns-3 2xl:columns-4"
+          >
             {images.map(({ id, public_id, format, blurDataUrl }) => (
               <Link
                 key={id}
@@ -101,11 +135,11 @@ const Home: NextPage = ({ images }: { images: ImageProps[] }) => {
                 as={`/p/${id}`}
                 ref={id === Number(lastViewedPhoto) ? lastViewedPhotoRef : null}
                 shallow
-                className="after:content group relative mb-5 block w-full cursor-zoom-in after:pointer-events-none after:absolute after:inset-0 after:rounded-lg after:shadow-highlight"
+                className="after:content group relative mb-5 block w-full cursor-zoom-in after:pointer-events-none after:absolute after:inset-0 after:rounded-xl after:shadow-highlight"
               >
                 <Image
-                  alt="Kevin Galeano Galeria."
-                  className="transform rounded-lg brightness-90 transition will-change-auto group-hover:brightness-110"
+                  alt="Operación documentada — Kevin Galeano"
+                  className="transform rounded-xl brightness-90 transition duration-500 will-change-auto group-hover:brightness-110 group-hover:scale-[1.02]"
                   style={{ transform: 'translate3d(0, 0, 0)' }}
                   placeholder="blur"
                   blurDataURL={blurDataUrl}
@@ -119,27 +153,38 @@ const Home: NextPage = ({ images }: { images: ImageProps[] }) => {
                 />
               </Link>
             ))}
-          </div>
+          </motion.div>
         )}
 
         {/* Videos Tab */}
         {activeTab === 'videos' && (
-          <div className="grid md:grid-cols-2 gap-8">
+          <motion.div
+            key="videos"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="grid md:grid-cols-2 gap-6 md:gap-8 max-w-6xl mx-auto"
+          >
             {videos.map((video) => (
-              <div key={video.id} className="rounded-lg overflow-hidden">
+              <div
+                key={video.id}
+                className="rounded-2xl overflow-hidden border border-white/10 shadow-glow-soft"
+              >
                 <div className="relative aspect-video w-full">
                   <iframe
                     src={`https://www.youtube.com/embed/${video.id}`}
-                    className="absolute inset-0 w-full h-full rounded-lg"
+                    className="absolute inset-0 w-full h-full"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
                     title={video.title}
                   />
                 </div>
-                <p className="text-white text-center mt-4 font-semibold">{video.title}</p>
+                <p className="text-white text-center py-4 font-semibold bg-white/[0.03]">
+                  {video.title}
+                </p>
               </div>
             ))}
-          </div>
+          </motion.div>
         )}
       </main>
       <Footer/>

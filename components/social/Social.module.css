@@ -2,30 +2,73 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 1rem;
+  gap: 0.75rem;
 }
 
 .customIconLink {
+  position: relative;
   width: 44px;
   height: 44px;
-  border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 24px;
-  transition: all 0.25s ease;
-  cursor: pointer;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.03);
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 18px;
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    color 0.3s ease, background 0.3s ease, border-color 0.3s ease,
+    box-shadow 0.4s ease;
+  overflow: hidden;
+}
+
+.customIconLink::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background: linear-gradient(135deg, #4F46E5 0%, #EA580C 100%);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  z-index: 0;
+}
+
+.customIconLink :global(svg) {
+  position: relative;
+  z-index: 1;
+  transition: transform 0.35s ease;
 }
 
 .customIconLink:hover {
-  border-color: rgba(255, 255, 255, 0.5);
   color: #ffffff;
-  transform: scale(1.1);
-  box-shadow: 0 0 12px rgba(234, 88, 12, 0.4);
+  border-color: rgba(255, 255, 255, 0.4);
+  transform: translateY(-3px) scale(1.08);
+  box-shadow:
+    0 10px 30px -8px rgba(234, 88, 12, 0.55),
+    0 0 0 1px rgba(255, 255, 255, 0.08) inset;
+}
+
+.customIconLink:hover::before {
+  opacity: 0.9;
+}
+
+.customIconLink:hover :global(svg) {
+  transform: scale(1.15);
+}
+
+.customIconLink:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 2px rgba(234, 88, 12, 0.6),
+    0 0 0 4px rgba(0, 0, 0, 0.8);
+}
+
+.customIconLink:active {
+  transform: translateY(-1px) scale(1.02);
 }
 
 .customIcon {
-  font-size: 24px;
+  font-size: 18px;
 }
