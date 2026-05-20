@@ -2,6 +2,18 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Critical Instructions for Opus (Third Round: UI/UX Overhaul)
+
+**Model:** Claude Opus 4.7 (required for this task)  
+**Task Type:** Complete UI/UX redesign with typography, color, dynamics, performance, and responsiveness  
+**Status:** Ready for implementation  
+
+### Third Round Scope (Opus Implementation)
+
+This round transforms the portfolio from functional to premium through comprehensive UI/UX overhaul. Use Claude Code global skills: `/ui-ux-pro-max`, `/frontend-design`, `/web-design-guidelines` for guidance.
+
+---
+
 ## Project Overview
 
 **Unified Platform for Kevin Galeano's Professional Activities** - A dual-purpose website serving two distinct lines of business:
@@ -213,6 +225,278 @@ When working on optimization tasks, leverage these Claude Code skills:
 
 ### Terminology Note
 - Use **"arborismo"** (not "arbolismo") for all references to tree climbing / recreational arborism activities
+
+---
+
+## Third Round: UI/UX Premium Redesign (OPUS TASK)
+
+### Overview
+Transform portfolio from functional to premium. Comprehensive redesign touching typography, color palette, component dynamics, navigation performance, responsive breakpoints, and visual polish. This is NOT incremental refinement — it is a complete visual transformation while preserving functionality.
+
+### Phase 1 — Typography & Global Styling
+
+**Typography Overhaul:**
+- Audit current font stacks (currently using system defaults)
+- Implement premium font pairing: consider Google Fonts or system fonts with better hierarchy
+- Establish clear type scale: H1, H2, H3, body, caption with consistent line-height and letter-spacing
+- Apply typography across ALL pages (pages/index.tsx, pages/colombia-vertical/index.tsx, pages/gallery/index.tsx, pages/experience/index.tsx)
+- Ensure WCAG AA contrast on all text + backgrounds
+- Mobile typography must be readable at all breakpoints (test at 320px, 375px, 768px, 1024px, 1280px)
+
+**Color Palette Expansion:**
+- Current: indigo (#4F46E5) + orange (#EA580C) + black/transparent
+- Expand to include:
+  - Accent neutrals: zinc-200, zinc-300, zinc-600, zinc-700, zinc-800, zinc-900
+  - Accent colors: purple-500, teal-500, amber-500 (optional, use sparingly)
+  - Gradient possibilities: indigo→purple, orange→amber (for backgrounds, buttons, hover states)
+  - Dark mode consideration: all text on black must be white or zinc-100 minimum
+- Document final palette in `tailwind.config.js` as custom theme colors
+- Apply consistently across all pages and components
+
+### Phase 2 — Component Dynamics & Interactions
+
+**Button Redesign (CRITICAL):**
+- Current buttons are "presets of Tailwind" — too generic
+- Design original, innovative button styles:
+  - Primary action buttons: indigo/orange gradient backgrounds, smooth transitions
+  - Secondary buttons: bordered with gradient text or border animation
+  - Tertiary buttons: minimal, text-only with underline or slide animation
+  - Hover states: scale, glow, color shift, shadow expansion (use Framer Motion or CSS)
+  - Active/pressed states: visual feedback (inset shadow, opacity shift)
+  - Disabled states: muted, pointer-events-none
+- Apply to ALL buttons: contact CTA buttons, tab switches, navigation, modals, forms
+- Ensure 44px minimum touch target on mobile
+
+**Micro-interactions & Dynamics:**
+- Use Framer Motion (already installed) for:
+  - Page transitions (fade + slide on route change)
+  - Scroll-reveal animations (already on home, enhance across all pages)
+  - Button hover states (not just scale, add depth/shadow)
+  - Icon animations (spinning, pulsing, morphing)
+  - Staggered list animations
+- Add smooth transitions to all color/background changes (300ms-500ms)
+- Parallax or depth effects on scroll (optional, if performance allows)
+- Test animations at 60fps on mobile devices
+
+**Modal & Overlay Polish:**
+- Modal backdrop should have slight blur + dark tint
+- Modal entrance: smooth scale + fade (not sudden appearance)
+- Close button should be visible and accessible
+- Keyboard navigation (ESC to close, Tab through elements)
+
+### Phase 3 — Navigation & Performance
+
+**Navigation Speed:**
+- Measure current Core Web Vitals (LCP, FID, CLS) using Lighthouse
+- Optimize image delivery: ensure all images use Next.js Image component with proper sizing
+- Code splitting: ensure Modal and other dynamic imports are properly cached
+- Lazy load off-screen content (gallery images, bottom-of-page sections)
+- Service worker for offline support (optional, if time allows)
+- Target: LCP < 2.5s, FID < 100ms, CLS < 0.1
+
+**Navigation Flow:**
+- Smooth page transitions (no jarring hard reloads)
+- Loading states on navigation (skeleton screens or spinners)
+- Breadcrumb or progress indicator on multi-step flows (if applicable)
+- Quick access menu or search (optional enhancement)
+
+### Phase 4 — Responsive Design (Mobile-First)
+
+**Breakpoints & Testing:**
+- Test at: 320px (iPhone SE), 375px (iPhone 12), 768px (iPad), 1024px (iPad Pro), 1280px (desktop)
+- Ensure NO horizontal scrolling at any breakpoint
+- Touch targets: minimum 44x44px (all buttons, links, interactive elements)
+- Text size: minimum 16px on mobile (avoid zoom requirement)
+- Spacing: consistent gutters (16px mobile, 24px tablet, 32px desktop)
+
+**Mobile-Specific Enhancements:**
+- Hamburger menu or mobile nav if navbar gets crowded (currently OK with 5 icons)
+- Optimize images for mobile (use responsive srcSet in Image components)
+- Ensure forms are mobile-friendly (large inputs, mobile keyboard support)
+- Swipe gestures for gallery (already supported via modal)
+
+**Tablet Optimization:**
+- Leverage extra screen space (use 2-column layouts where appropriate)
+- Ensure touch-friendly navigation
+- Test on landscape orientation
+
+### Phase 5 — Home Page Hero Redesign
+
+**Current State Issues:**
+- White logo in card is visually heavy and breaks design intent
+- NavBar icons for Colombia Vertical and WhatsApp should not be global nav (contextual placement better)
+
+**New Hero Layout:**
+```
+Hero Section (full viewport, BackgroundVideo):
+  - Main content: Kevin's name + title (centered or left-aligned, your choice)
+  - Bottom Right: Custom WhatsApp SVG icon button (floating, animated on hover)
+  - Bottom Left: Colombia Vertical SVG logo/button (floating, animated on hover)
+  - Pulsing scroll-down chevron (already exists, enhance animation)
+  - Remove the white background card with Colombia Vertical logo
+  - NO white logos on hero — use floating SVG icons instead
+```
+
+**WhatsApp SVG Icon:**
+- Create original WhatsApp icon SVG faithful to brand (green circle, white phone icon)
+- Colors: #25D366 (WhatsApp green) for background, white for icon
+- Size: 60-80px diameter
+- Position: `fixed` or `absolute` bottom-right corner of hero (with 24px margin from edges on mobile)
+- Hover state: scale up, add glow/shadow, slight rotation
+- Click action: opens `https://wa.me/573003485579`
+- On scroll down: fades out or becomes sticky floating button (your preference based on design)
+
+**Colombia Vertical SVG Icon:**
+- Convert `/public/fundacionColombiaVertical.jpg` to SVG (hand-trace or use auto-vectorizer)
+- Remove white background (transparent or use only the logo mark)
+- Size: 60-80px
+- Position: `absolute` bottom-left corner of hero (with 24px margin from edges)
+- Hover state: scale, rotate, glow effect
+- Click action: scrolls to videos section OR navigates to `/colombia-vertical`
+- On scroll down: fades out (unless you want sticky behavior)
+
+**Hero Content:**
+- Typography: Large, premium font for Kevin's name (H1 equivalent)
+- Subtitle: "Bombero • Rescatista • Instructor" with custom styling
+- Remove contact buttons from hero (move to separate section or keep if design allows)
+- Keep Social icons if they fit, otherwise move to footer
+- Ensure readable on all devices (test text wrapping at 375px)
+
+### Phase 6 — Home Page Scroll Section Redesign
+
+**Current Issue:**
+- "Colombia Vertical en Acción" section has too much text/info mixed with videos
+- Should be video-focused, minimal text
+
+**New Design:**
+```
+[User scrolls down past hero]
+Section Header: "Colombia Vertical en Acción" (minimal, large typography)
+Video Grid: Documentary + Trailer side-by-side (desktop), stacked (mobile)
+CTA Button: "Conoce más de Colombia Vertical" (redesigned original button style)
+[No other Colombia Vertical text/info in this section]
+```
+
+- Animations: Videos slide in on scroll reveal (enhance current Framer Motion setup)
+- Button: Use new button design from Phase 2
+- Remove duplicate info — videos + minimal text only
+
+### Phase 7 — Colombia Vertical Page Analysis & Images
+
+**Transcription Review:**
+- Review Kevin's original audio transcriptions about Colombia Vertical
+- Extract key themes: mission, activities, target audience, USP
+- Incorporate these into page copy naturally
+- Ensure terminology is "arborismo" throughout
+
+**Image Strategy:**
+- Home hero: KEEP current BackgroundVideo (Cloudinary video)
+- Experience page: KEEP current images
+- Colombia Vertical hero: New image (Cloudinary or public) showing arborism activity
+- Colombia Vertical about: Different image (forest canopy, climber, equipment)
+- Colombia Vertical services: Grid of 3-4 images (one per service category)
+- Colombia Vertical videos: Section as-is
+- Colombia Vertical contact: Closing image (team, activity, or landscape)
+- Gallery: Mix of portfolio images + Colombia Vertical images (organized by folder in Cloudinary)
+
+**Image Sources:**
+- Cloudinary folder: `kgb/` (ask user if new images have been uploaded)
+- Public folder: `/public/` (fallback for placeholder images)
+- Ensure all images use Next.js `<Image>` component with proper `width`, `height`, `priority`, `loading="lazy"`
+- Optimize for different screen sizes using `sizes` prop
+
+### Phase 8 — NavBar Simplification
+
+**Changes:**
+- Remove `/experience`, `/gallery`, `/colombia-vertical` text-based navigation from icon bar (currently using icons)
+- KEEP icon navigation BUT remove the leaf icon (Colombia Vertical) and WhatsApp icon from NavBar
+- Reasoning: These are now in hero buttons (WhatsApp + Colombia Vertical SVG), no need for global nav redundancy
+- NavBar should have: Experience icon, Home icon, Gallery icon (3 items max)
+- Consider adding a theme toggle or other utility if space allows
+
+### Phase 9 — Gallery Enhancements
+
+**Tab Switcher:**
+- Current: Basic indigo button styling
+- New: Use redesigned button styles from Phase 2
+- Ensure "Fotos" tab shows photo grid, "Videos" tab shows YouTube embeds
+- Mobile: Ensure tab switcher is finger-friendly (44px height)
+
+**Photo Grid:**
+- Enhance loading states (skeleton screens or blur-up effect already with blur placeholder)
+- Add image filters/effects on hover (slight brightness increase, subtle scale)
+- Ensure responsive columns: 1 (mobile), 2 (tablet), 3-4 (desktop)
+
+### Phase 10 — Experience Page Enhancement
+
+**Current State:**
+- Timeline with images is functional
+- KEEP existing images and layout structure
+
+**Enhancements:**
+- Apply new typography hierarchy
+- Ensure timeline animation works smoothly on mobile
+- Add subtle background images or textures (optional, if it enhances not clutters)
+- Ensure color contrast on timeline elements (circles, borders, text)
+
+### Phase 11 — Global Accessibility & Performance Checklist
+
+**Accessibility:**
+- Run Lighthouse audit on all pages
+- Ensure WCAG AA contrast on all text (use WebAIM contrast checker)
+- Add `aria-label` to all icon buttons
+- Ensure keyboard navigation works on all pages (Tab, Enter, ESC)
+- Test with screen reader (nvda or JAWS simulation)
+- Form inputs: proper labels, error messages, focus states
+
+**Performance:**
+- Audit bundle size (check Next.js build output)
+- Ensure no unused CSS/Tailwind classes
+- Test on slow 4G network (Chrome DevTools throttling)
+- Measure and improve LCP, FID, CLS
+- Target: Lighthouse score >= 90 on all pages
+
+**Browser Compatibility:**
+- Test on Chrome, Firefox, Safari, Edge
+- Ensure no console errors or warnings
+- Polyfill any ES6+ features if targeting older browsers
+
+---
+
+## Implementation Strategy for Opus
+
+**Approach:**
+1. Start with Phase 1 (typography + colors) — this is foundational
+2. Build component library in Phase 2 (buttons, animations)
+3. Apply globally to all pages (Phase 3-10)
+4. Test end-to-end (Phase 11)
+
+**Tools & Resources:**
+- `/ui-ux-pro-max` skill: Use for color palette suggestions, typography pairings, button design inspiration
+- `/frontend-design` skill: Use for layout decisions, responsive grid, whitespace
+- `/web-design-guidelines` skill: Use for accessibility compliance, performance optimization
+- Framer Motion docs: https://www.framer.com/motion/
+- Tailwind CSS: Extend config with custom colors/theme
+- Next.js Image: Use throughout for optimization
+- Lighthouse: Run frequently to measure performance
+
+**Deliverables:**
+- All pages visually transformed with premium typography and colors
+- Original button designs used throughout (not Tailwind presets)
+- WhatsApp + Colombia Vertical SVG icons in hero
+- Scroll section with videos only (minimal text)
+- Images on all pages (distinct per view)
+- NavBar simplified (3 icons only)
+- Mobile-first responsive design (tested at 320px, 375px, 768px, 1280px)
+- Performance metrics: Lighthouse >= 90
+- Accessibility: WCAG AA contrast + keyboard navigation
+
+**Final Verification:**
+- `npm run build` — no errors
+- `npm run dev` — all pages load smoothly
+- Manual testing on actual mobile devices (iPhone, Android)
+- Lighthouse audit on each page
+- Cross-browser testing
 
 ## Notes for Future Development
 
