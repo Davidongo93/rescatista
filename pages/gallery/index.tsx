@@ -3,7 +3,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import dynamic from 'next/dynamic'
 import cloudinary from '../../utils/cloudinary'
 import getBase64ImageUrl from '../../utils/generateBlurPlaceholder'
@@ -24,8 +24,14 @@ const Home: NextPage = ({ images }: { images: ImageProps[] }) => {
   const router = useRouter()
   const { photoId } = router.query
   const [lastViewedPhoto, setLastViewedPhoto] = useLastViewedPhoto()
+  const [activeTab, setActiveTab] = useState<'fotos' | 'videos'>('fotos')
 
   const lastViewedPhotoRef = useRef<HTMLAnchorElement>(null)
+
+  const videos = [
+    { id: 'm4rjfOJspfs', title: 'Documental Colombia Vertical' },
+    { id: 'iMnyO3NEhEY', title: 'Tráiler Colombia Vertical' },
+  ]
 
   useEffect(() => {
     // This effect keeps track of the last viewed photo in the modal to keep the index page in sync when the user navigates back
@@ -45,7 +51,7 @@ const Home: NextPage = ({ images }: { images: ImageProps[] }) => {
         />
         <meta property="og:title" content="Galería — Kevin Alexander Galeano" />
         <meta property="og:description" content="Fotos de rescates, expediciones y operaciones profesionales" />
-        <meta property="og:image" content="/og-image.png" />
+        <meta property="og:image" content="/fallback.jpg" />
       </Head>
 
       <NavBar/>
@@ -60,33 +66,81 @@ const Home: NextPage = ({ images }: { images: ImageProps[] }) => {
             }}
           />
         )}
-        <div className="columns-1 gap-4 sm:columns-2 xl:columns-3 2xl:columns-4">
-          {images.map(({ id, public_id, format, blurDataUrl }) => (
-            <Link
-              key={id}
-              href={`/gallery/?photoId=${id}`}
-              as={`/p/${id}`}
-              ref={id === Number(lastViewedPhoto) ? lastViewedPhotoRef : null}
-              shallow
-              className="after:content group relative mb-5 block w-full cursor-zoom-in after:pointer-events-none after:absolute after:inset-0 after:rounded-lg after:shadow-highlight"
-            >
-              <Image
-                alt="Kevin Galeano Galeria."
-                className="transform rounded-lg brightness-90 transition will-change-auto group-hover:brightness-110"
-                style={{ transform: 'translate3d(0, 0, 0)' }}
-                placeholder="blur"
-                blurDataURL={blurDataUrl}
-                src={`https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/c_scale,w_720/${public_id}.${format}`}
-                width={720}
-                height={480}
-                sizes="(max-width: 640px) 100vw,
-                  (max-width: 1280px) 50vw,
-                  (max-width: 1536px) 33vw,
-                  25vw"
-              />
-            </Link>
-          ))}
+
+        {/* Tab Switcher */}
+        <div className="mb-8 flex gap-4 justify-center">
+          <button
+            onClick={() => setActiveTab('fotos')}
+            className={`px-6 py-2 rounded-lg font-semibold transition ${
+              activeTab === 'fotos'
+                ? 'bg-indigo-600 text-white'
+                : 'bg-black/40 text-white/60 hover:text-white'
+            }`}
+          >
+            Fotos
+          </button>
+          <button
+            onClick={() => setActiveTab('videos')}
+            className={`px-6 py-2 rounded-lg font-semibold transition ${
+              activeTab === 'videos'
+                ? 'bg-indigo-600 text-white'
+                : 'bg-black/40 text-white/60 hover:text-white'
+            }`}
+          >
+            Videos
+          </button>
         </div>
+
+        {/* Photos Tab */}
+        {activeTab === 'fotos' && (
+          <div className="columns-1 gap-4 sm:columns-2 xl:columns-3 2xl:columns-4">
+            {images.map(({ id, public_id, format, blurDataUrl }) => (
+              <Link
+                key={id}
+                href={`/gallery/?photoId=${id}`}
+                as={`/p/${id}`}
+                ref={id === Number(lastViewedPhoto) ? lastViewedPhotoRef : null}
+                shallow
+                className="after:content group relative mb-5 block w-full cursor-zoom-in after:pointer-events-none after:absolute after:inset-0 after:rounded-lg after:shadow-highlight"
+              >
+                <Image
+                  alt="Kevin Galeano Galeria."
+                  className="transform rounded-lg brightness-90 transition will-change-auto group-hover:brightness-110"
+                  style={{ transform: 'translate3d(0, 0, 0)' }}
+                  placeholder="blur"
+                  blurDataURL={blurDataUrl}
+                  src={`https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/c_scale,w_720/${public_id}.${format}`}
+                  width={720}
+                  height={480}
+                  sizes="(max-width: 640px) 100vw,
+                    (max-width: 1280px) 50vw,
+                    (max-width: 1536px) 33vw,
+                    25vw"
+                />
+              </Link>
+            ))}
+          </div>
+        )}
+
+        {/* Videos Tab */}
+        {activeTab === 'videos' && (
+          <div className="grid md:grid-cols-2 gap-8">
+            {videos.map((video) => (
+              <div key={video.id} className="rounded-lg overflow-hidden">
+                <div className="relative aspect-video w-full">
+                  <iframe
+                    src={`https://www.youtube.com/embed/${video.id}`}
+                    className="absolute inset-0 w-full h-full rounded-lg"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    title={video.title}
+                  />
+                </div>
+                <p className="text-white text-center mt-4 font-semibold">{video.title}</p>
+              </div>
+            ))}
+          </div>
+        )}
       </main>
       <Footer/>
     </>

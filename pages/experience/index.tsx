@@ -19,7 +19,7 @@ export default function ExperiencePage() {
           property="og:description"
           content="Recorrido profesional en rescate, bombería e iniciativas humanitarias"
         />
-        <meta property="og:image" content="/og-image.png" />
+        <meta property="og:image" content="/fallback.jpg" />
       </Head>
       <NavBar/>
       <BackgroundVideo src="https://res.cloudinary.com/de43jseoy/video/upload/v1704412192/xbtekdxt32y4xknarqiv.mp4" />

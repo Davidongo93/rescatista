@@ -8,7 +8,7 @@ interface BackgroundVideoProps {
 
 const BackgroundVideo: React.FC<BackgroundVideoProps> = ({
   src,
-  posterSrc = '/og-image.png',
+  posterSrc = '/fallback.jpg',
   className = 'fixed inset-0 object-cover w-full h-full -z-10',
 }) => {
   return (

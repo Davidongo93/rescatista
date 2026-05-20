@@ -3,8 +3,9 @@ import {
   faHome,
   faBriefcase,
   faImage,
-  faEnvelope,
+  faLeaf,
 } from "@fortawesome/free-solid-svg-icons";
+import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 
@@ -36,12 +37,23 @@ const Navbar = () => {
           <Link href="/experience" title="Experiencia">
             <FontAwesomeIcon icon={faBriefcase} className="w-8 h-8 text-white text-2xl transition duration-300 transform hover:scale-110" />
           </Link>
-         <Link href="/">
+          <Link href="/">
             <FontAwesomeIcon icon={faHome} className="w-8 h-8 text-white text-2xl transition duration-300 transform hover:scale-110" />
-        </Link>
+          </Link>
           <Link href="/gallery" title="Galería">
             <FontAwesomeIcon icon={faImage} className="w-8 h-8 text-white text-2xl transition duration-300 transform hover:scale-110" />
           </Link>
+          <Link href="/colombia-vertical" title="Colombia Vertical">
+            <FontAwesomeIcon icon={faLeaf} className="w-8 h-8 text-white text-2xl transition duration-300 transform hover:scale-110" />
+          </Link>
+          <a
+            href="https://wa.me/573003485579"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="WhatsApp"
+          >
+            <FontAwesomeIcon icon={faWhatsapp} className="w-8 h-8 text-white text-2xl transition duration-300 transform hover:scale-110" />
+          </a>
         </div>
       </div>
     </nav>

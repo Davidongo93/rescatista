@@ -6,9 +6,13 @@
 }
 
 .customIconLink {
-  color: #EA580C;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.7);
   font-size: 24px;
-  transition: color 0.3s ease, transform 0.2s ease;
+  transition: all 0.25s ease;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -16,8 +20,10 @@
 }
 
 .customIconLink:hover {
-  color: #FFFFFF;
-  transform: scale(1.2);
+  border-color: rgba(255, 255, 255, 0.5);
+  color: #ffffff;
+  transform: scale(1.1);
+  box-shadow: 0 0 12px rgba(234, 88, 12, 0.4);
 }
 
 .customIcon {

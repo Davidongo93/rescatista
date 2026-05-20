@@ -242,7 +242,7 @@ import experiences from '../../components/experienceCard/experiences';
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="canonical" href="https://rescatista.vercel.app" />
-<meta property="og:image" content="https://rescatista.vercel.app/og-image.png" />
+<meta property="og:image" content="https://rescatista.vercel.app/fallback.jpg" />
 <meta name="twitter:card" content="summary_large_image" />
 ```
 

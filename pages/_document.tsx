@@ -20,12 +20,12 @@ class MyDocument extends Document {
             property="og:description"
             content="Rescatista especializado, bombero instructor con experiencia en rescate vertical, montaña, incendios y expediciones científicas"
           />
-          <meta property="og:image" content="https://rescatista.vercel.app/og-image.png" />
+          <meta property="og:image" content="https://rescatista.vercel.app/fallback.jpg" />
           <meta property="og:image:width" content="1200" />
           <meta property="og:image:height" content="630" />
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:site" content="@judasgaleano" />
-          <meta name="twitter:image" content="https://rescatista.vercel.app/og-image.png" />
+          <meta name="twitter:image" content="https://rescatista.vercel.app/fallback.jpg" />
           <meta
             name="twitter:description"
             content="Rescatista, bombero e instructor especializado en operaciones de rescate"

@@ -4,7 +4,21 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-**Kevin Galeano Portfolio** - A personal portfolio website for Kevin Alexander Galeano Barbosa, a specialized rescue firefighter and instructor. The site showcases his experience, professional history, and photo gallery.
+**Unified Platform for Kevin Galeano's Professional Activities** - A dual-purpose website serving two distinct lines of business:
+
+1. **Personal Portfolio** - Showcases Kevin Alexander Galeano Barbosa's experience as a specialized rescue firefighter, instructor, and humanitarian worker (15+ years). Includes professional history timeline, photo gallery of rescue operations and expeditions.
+
+2. **Colombia Vertical** - A recreational and professional arborism organization. Features integrated YouTube videos (documentary and trailer), adventure/climbing gallery section, and team information.
+
+**Client Details:**
+- **Name**: Kevin Alexander Galeano Barbosa
+- **Primary Role**: Rescatista (rescue specialist), Bombero (firefighter), Instructor
+- **Secondary Line**: Colombia Vertical (arborism activities - Note: "arborismo" in Spanish, not "arbolismo")
+- **Media Assets**: 
+  - Colombia Vertical Logo: `/public/fundacionColombiaVertical.jpg`
+  - YouTube Documentary: https://youtu.be/m4rjfOJspfs?si=99No4DYrvHDtDBPZ
+  - YouTube Trailer: https://youtu.be/iMnyO3NEhEY?feature=shared
+  - Cloudinary Folder: `kgb` (organized internally for both lines of business)
 
 **Tech Stack:**
 - **Framework**: Next.js 13+ (Pages Router) with React 18
@@ -33,17 +47,18 @@ npm run lint           # Run ESLint
 ## Architecture & Project Structure
 
 ### Pages Structure
-- `/` - Home page: Hero section with video background, name, title, and contact info
-- `/gallery` - Photo gallery with masonry layout (Cloudinary images)
+- `/` - Home page: Hero section with video background, contact info, scroll-reveal video section with pulsing scroll icon, Colombia Vertical button
+- `/colombia-vertical` - Landing page for Colombia Vertical (single-view microsite with hero, mission, services, videos, contact)
+- `/gallery` - Photo gallery with masonry layout (Cloudinary images + new Videos section)
 - `/experience` - Timeline of professional experience and humanitarian work
 - `/p/[photoId]` - Individual photo detail view with modal
 
 ### Core Components
 
 **Layout Components:**
-- `NavBar` (JSX) - Fixed navigation with icon links (experience, home, gallery)
+- `NavBar` (JSX) - Fixed navigation with icon links (experience, home, gallery) + WhatsApp button
 - `Footer` (JSX + CSS Module) - Fixed footer showing at bottom of scroll
-- `Social` (JSX + CSS Module) - Social media icons with hover effects
+- `Social` (JSX + CSS Module) - Social media icons with improved visual styling for better interactivity
 
 **Feature Components:**
 - `ExperienceCard` - Responsive card for timeline entries (⚠️ uses `typeof window` for mobile detection - should use CSS media queries)
@@ -145,6 +160,60 @@ When working on optimization tasks, leverage these Claude Code skills:
 - `/frontend-design` - High-quality frontend interface design
 - `/typescript-advanced-types` - Type safety improvements
 
+## Second Round Work (Colombia Vertical Integration)
+
+### Scope & Requirements
+
+**New Features for Home (/)**
+- Add pulsing scroll-down icon in hero to invite scrolling
+- Implement scroll-reveal video section below hero (smooth entrance animations)
+- Embed YouTube videos: Documentary (main) + Trailer (secondary) with responsive aspect ratio
+- Add button with Colombia Vertical logo in hero (top-left or accessible location) linking to `/colombia-vertical`
+- Add WhatsApp button in hero (links to +57 3003485579)
+
+**New Page: Colombia Vertical (/colombia-vertical)**
+- Single-view landing page (no pagination)
+- Hero section with Colombia Vertical branding
+- Mission/Description section about arborism activities
+- Services/Activities overview
+- Embedded YouTube videos section (same as portfolio home but organized differently)
+- Photo gallery section (using Cloudinary images)
+- Team/Contact section with WhatsApp CTA
+- Footer matching main site styling
+
+**Gallery Page Enhancements (/gallery)**
+- Add "Videos" tab/section alongside existing photo gallery
+- Display YouTube videos in embeddable format within gallery context
+- Maintain same responsiveness and styling as photo gallery
+
+**Navigation Updates**
+- Add WhatsApp button to NavBar (floating icon or nav element)
+- Ensure nav works seamlessly across both portfolio and Colombia Vertical pages
+
+**UI/Visual Improvements**
+- Enhance social media icons with better hover effects, animations, and visual distinction
+- Ensure color consistency: indigo/orange palette across all new sections
+- Test on mobile, tablet, and desktop viewports
+
+**Cloudinary Organization**
+- Maintain `kgb` folder structure with internal organization:
+  - `kgb/portfolio/` - Portfolio photos (rescue operations, experience)
+  - `kgb/colombia-vertical/` - Colombia Vertical photos and adventure content
+
+**Optional Enhancement**
+- Create hidden API endpoint or private upload link for Kevin to add images to Colombia Vertical folder via API
+
+### Priority Order
+1. Colombia Vertical landing page (`/colombia-vertical`) - foundational new page
+2. YouTube video integration in home (scroll-reveal section + pulsing icon)
+3. Gallery Videos section
+4. NavBar/Hero WhatsApp button
+5. Social icons visual improvements
+6. Cloudinary folder reorganization
+
+### Terminology Note
+- Use **"arborismo"** (not "arbolismo") for all references to tree climbing / recreational arborism activities
+
 ## Notes for Future Development
 
 - Always test gallery pagination and modal navigation on actual mobile devices, not just browser dev tools
@@ -152,3 +221,6 @@ When working on optimization tasks, leverage these Claude Code skills:
 - The experience timeline data is currently English descriptions - consider i18n if expanding
 - Social media links are hardcoded; consider externalizing to a config file
 - Consider adding a CMS or headless backend if content management becomes complex
+- Colombia Vertical page should handle YouTube video embeds responsively (use iframe with aspect ratio containers)
+- Ensure all new WhatsApp links use proper formatting: `https://wa.me/573003485579` or similar
+- Test YouTube embed responsiveness on mobile - ensure videos don't overflow container
